@@ -1,23 +1,873 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+  <!-- JSON-LD 구조화 데이터 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "자동차 책임보험 한도 상세 가이드",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "Article",
+          "url": "#insurance-intro",
+          "name": "자동차 책임보험이란? 의무 가입의 법적 근거와 한도 개념",
+          "headline": "자동차 책임보험 한도의 법적 성격과 대인 대물 의무 규정"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "Article",
+          "url": "#injury-grades-table",
+          "name": "대인배상 I 상해 등급별 보상 한도액 (1급~14급 상세)",
+          "headline": "대인배상 I 1급부터 14급까지의 상해등급별 한도 금액 분석"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "Article",
+          "url": "#property-limits",
+          "name": "대물배상 의무 가입 최소 한도와 초과 리스크",
+          "headline": "대물배상 2,000만 원 한도 설정의 한계와 종합형 설계의 중요성"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "item": {
+          "@type": "Article",
+          "url": "#uninsured-penalty",
+          "name": "책임보험 미가입 시 일별 과태료 및 형사처벌 규정",
+          "headline": "의무보험 미가입 기간에 따른 일자별 과태료 부과 기준표"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "item": {
+          "@type": "Article",
+          "url": "#simulation-section",
+          "name": "나이, 경력, 차종별 자동차 보험료 예상 견적 계산기",
+          "headline": "책임보험 및 종합보험 예상 납입 비용 계산 시뮬레이터"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+    
+    :root {
+      --primary-color: #1e3a8a;
+      --primary-light: #eff6ff;
+      --secondary-color: #0284c7;
+      --secondary-light: #f0f9ff;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+      --bg-gradient-start: #f8fafc;
+      --bg-gradient-end: #f1f5f9;
+      --border-color: #cbd5e1;
+      --accent-color: #e2e8f0;
+      --table-header: #f1f5f9;
+      --transition-speed: 0.3s;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+      color: var(--text-dark);
+      margin: 0;
+      padding: 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    header {
+      background-color: #ffffff;
+      border-bottom: 2px solid var(--border-color);
+      padding: 30px 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .header-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header h1 {
+      color: var(--primary-color);
+      font-size: 2.2em;
+      font-weight: 900;
+      margin: 0 0 10px 0;
+      line-height: 1.3;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.1em;
+      margin: 0 0 20px 0;
+    }
+
+    nav {
+      background-color: var(--primary-light);
+      border-radius: 8px;
+      padding: 10px 15px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    nav a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95em;
+      transition: color var(--transition-speed) ease;
+    }
+
+    nav a:hover {
+      color: var(--secondary-color);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    section {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 40px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    h2 {
+      color: var(--primary-color);
+      font-size: 1.6em;
+      font-weight: 800;
+      border-left: 6px solid var(--secondary-color);
+      padding-left: 15px;
+      margin-top: 0;
+      margin-bottom: 25px;
+      line-height: 1.4;
+    }
+
+    h3 {
+      color: var(--secondary-color);
+      font-size: 1.25em;
+      font-weight: 700;
+      margin-top: 25px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #334155;
+    }
+
+    strong {
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+
+    ul, ol {
+      margin-top: 0;
+      margin-bottom: 20px;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 10px;
+      color: #334155;
+    }
+
+    .info-box {
+      background-color: var(--secondary-light);
+      border-left: 4px solid var(--secondary-color);
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 25px;
+    }
+
+    .info-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .warning-box {
+      background-color: #fff1f2;
+      border-left: 4px solid #f43f5e;
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 25px;
+    }
+
+    .warning-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      margin-bottom: 30px;
+      font-size: 0.95em;
+    }
+
+    th, td {
+      border: 1px solid var(--border-color);
+      padding: 14px 16px;
+      text-align: center;
+    }
+
+    th {
+      background-color: var(--table-header);
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    .keywords-container {
+      background-color: #f1f5f9;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    .keywords-list {
+      columns: 2;
+      -webkit-columns: 2;
+      -moz-columns: 2;
+      list-style-type: square;
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .keywords-list li {
+      font-size: 0.9em;
+      color: #475569;
+      margin-bottom: 6px;
+    }
+
+    form {
+      background-color: var(--primary-light);
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+
+    label {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 8px;
+      color: var(--primary-color);
+    }
+
+    input[type=text], input[type=tel], select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 1em;
+      box-sizing: border-box;
+      background-color: #ffffff;
+      transition: border-color var(--transition-speed) ease;
+    }
+
+    input[type=text]:focus, input[type=tel]:focus, select:focus, textarea:focus {
+      border-color: var(--secondary-color);
+      outline: none;
+    }
+
+    .form-group-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .form-group-row .form-field {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background-color: var(--secondary-color);
+      color: #ffffff;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-size: 1.1em;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background-color var(--transition-speed) ease;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+    }
+
+    .cta-btn:hover {
+      background-color: var(--primary-color);
+    }
+
+    .result-box {
+      margin-top: 25px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      display: none;
+    }
+
+    .faq-item {
+      margin-bottom: 25px;
+      border-bottom: 1px solid var(--accent-color);
+      padding-bottom: 20px;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .faq-item h3 {
+      color: var(--primary-color);
+      font-size: 1.15em;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .faq-item p {
+      margin-bottom: 0;
+      color: #475569;
+    }
+
+    .external-links {
+      background-color: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 30px;
+    }
+
+    .external-links ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .external-links li {
+      margin-bottom: 12px;
+    }
+
+    .external-links a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 700;
+      transition: color var(--transition-speed) ease;
+    }
+
+    .external-links a:hover {
+      color: var(--primary-color);
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: #1e293b;
+      color: #94a3b8;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9em;
+      margin-top: 50px;
+      border-top: 1px solid #334155;
+    }
+
+    footer p {
+      color: #94a3b8;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        font-size: 15px;
+      }
+      header h1 {
+        font-size: 1.8em;
+      }
+      section {
+        padding: 25px;
+      }
+      .keywords-list {
+        columns: 1;
+        -webkit-columns: 1;
+        -moz-columns: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <h1>자동차 책임보험 한도 및 2026년 최신 가이드</h1>
+      <p>대한민국 법정 의무 가입 규정인 자동차 책임보험의 대인배상 I 및 대물배상 보장 한도액 정보를 상세히 제공합니다.</p>
+      <nav>
+        <ul>
+          <li><a href="#insurance-intro">책임보험의 정의</a></li>
+          <li><a href="#injury-grades">대인배상 I 상해한도</a></li>
+          <li><a href="#property-limits">대물배상 의무한도</a></li>
+          <li><a href="#uninsured-penalty">미가입 과태료</a></li>
+          <li><a href="#simulation-section">보험료 시뮬레이터</a></li>
+          <li><a href="#faq">자주 묻는 질문</a></li>
+          <li><a href="#official-resources">공식 정보 출처</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    
+    <section class="keywords-container">
+      <h2>연관 카테고리 및 관련 키워드 안내</h2>
+      <p>본 안내 페이지는 아래의 자동완성, 연관 검색어, 함께 많이 찾는 키워드들의 맥락을 통합 분석하여 작성되었습니다.</p>
+      <ul class="keywords-list">
+        <li>자동차 책임보험 한도 세부 규정</li>
+        <li>의무보험 대인배상 1 보장 금액</li>
+        <li>대물배상 최소 가입 한도 및 리스크</li>
+        <li>나이별 자동차 보험료 평균 가격</li>
+        <li>모델별 신규 자동차 보험 견적</li>
+        <li>다이렉트 자동차보험 비교 가입</li>
+        <li>무보험 차량 운행 시 과태료 처분</li>
+        <li>대인 12급 염좌 보상금 한도액</li>
+        <li>상해급수 1급~14급 치료비 기준</li>
+        <li>인터넷 자동차 보험 싼곳 추천</li>
+      </ul>
+    </section>
+
+    <section id="insurance-intro">
+      <h2>1. 자동차 책임보험이란? 의무 가입의 법적 근거</h2>
+      <p>대한민국에서 차량을 소유하고 도로를 달리는 모든 운전자는 <strong>자동차손해배상 보장법</strong>에 따라 예외 없이 <strong>의무적으로 책임보험에 가입</strong>하여야 합니다. 책임보험은 교통사고가 발생했을 때 피해를 입은 상대방의 최소한의 인적, 물적 피해를 신속하게 구제하기 위해 국가에서 강제하는 최소한의 안전장치입니다.</p>
+      
+      <p>많은 소비자들이 네이버 지식인, 구글 검색엔진, 유튜브 채널 등을 통해 자동차 보험료 평균 수준과 가입 견적 금액이 얼마인지 비교 분석합니다. 디시인사이드(디시)의 차갤, 보배드림, 에펨코리아(펨코) 혹은 에펨코리아 커뮤니티의 내돈내산 가입 후기 글들을 모니터링해보면, 신규 면허 취득자나 나이가 어린 만 21세, 만 24세 운전자들이 의무보험 종류와 브랜드별 혜택에 대해 의문을 가지는 사례를 쉽게 찾을 수 있습니다.</p>
+      
+      <div class="info-box">
+        <p><strong>핵심 개념 정리:</strong></p>
+        <p>자동차보험은 크게 두 개의 영역으로 나뉩니다. 첫째는 법정 의무 계약인 <strong>책임보험(의무보험)</strong>이고, 둘째는 책임보험의 한도를 초과하는 손해를 폭넓게 보장받기 위해 임의로 가입하는 <strong>종합보험(임의보험)</strong>입니다. 책임보험만 가입한 상태에서 대형 사고가 발생하는 경우, 보상 한도를 초과하는 금액은 온전히 운전자 본인의 사비로 책임져야 하는 치명적인 단점이 존재합니다.</p>
+      </div>
+
+      <p>전문가들은 만약 책임보험만 단독으로 가입할 경우 발생할 수 있는 여러 장단점을 명확히 짚어줍니다. 장점은 초기 계약 시 납입하는 비용이나 가격 자체가 제일 싼곳 위주로 구성되어 저렴하다는 것이지만, 단점은 대형 사고 발생 시 보장이 극히 제한적이라는 점과 교통사고처리 특례법상의 형사처벌 면제 혜택을 전혀 받을 수 없다는 점입니다. 이러한 차이점으로 인해 단순 계산을 넘어 정밀 컨설팅이나 전문 상담 업체의 추천을 통해 종합보험(대인배상 II 및 대물배상 한도 상향) 형태로 가입하는 방식이 권장됩니다.</p>
+    </section>
+
+    <section id="injury-grades">
+      <h2>2. 대인배상 I 상해 등급별 한도액 (1급~14급 상세)</h2>
+      <p>대인배상 I은 상대방이 다치거나 사망한 경우를 보장하는 의무 담보입니다. 사고로 타인이 사망하거나 식물인간 수준의 영구 후유장해를 입게 된 경우 1인당 최고 <strong>1억 5,000만 원</strong>의 한도 내에서 손해액을 보상하며, 최저 보장 금액은 2,000만 원으로 규정되어 있습니다.</p>
+      
+      <p>반면, 부상을 입은 부상 사고의 경우에는 사고를 당한 상대방의 진단서상 상해급수(1급부터 14급까지 구분)에 의해서 철저히 보상 한도액이 제한됩니다. 상해 등급이 높을수록(1급에 가까울수록) 치명적인 부상이며 더 많은 보상 금액이 한도로 잡힙니다. 만약 가해 차량이 종합보험인 대인배상 II(무한 보장)에 가입되어 있지 않고 대인배상 I 책임보험에만 가입된 차량이라면, 상대방 병원 치료비가 상해급수별 책임한도액을 초과하는 즉시 피해자는 치료비 지급을 거부당하거나 가해자 개인에게 직접 청구해야 하는 골치 아픈 상황에 부딪히게 됩니다.</p>
+
+      <h3>2026년 기준 대인배상 I 상해 등급별 보상 한도액 기준표</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>상해 등급</th>
+            <th>보장 한도액 (1인당)</th>
+            <th>대표적인 부상 상태 유형 예시</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>상해 1급</strong></td>
+            <td>3,000만 원</td>
+            <td>뇌 손상으로 인한 완전 마비 또는 척수 손상, 양안 실명</td>
+          </tr>
+          <tr>
+            <td><strong>상해 2급</strong></td>
+            <td>1,500만 원</td>
+            <td>사지 마비, 한팔 및 한다리의 절단 등 극심한 상해</td>
+          </tr>
+          <tr>
+            <td><strong>상해 3급</strong></td>
+            <td>1,200만 원</td>
+            <td>각 장기 파열로 인한 중증 수술 필요 상태</td>
+          </tr>
+          <tr>
+            <td><strong>상해 4급</strong></td>
+            <td>900만 원</td>
+            <td>두개골 복합 골절로 뇌 손상이 동반된 경우</td>
+          </tr>
+          <tr>
+            <td><strong>상해 5급</strong></td>
+            <td>750만 원</td>
+            <td>고관절의 탈구 및 복합적인 골절 상태</td>
+          </tr>
+          <tr>
+            <td><strong>상해 6급</strong></td>
+            <td>700만 원</td>
+            <td>쇄골이나 대퇴골 등의 전위성 골절로 수술을 행한 경우</td>
+          </tr>
+          <tr>
+            <td><strong>상해 7급</strong></td>
+            <td>500만 원</td>
+            <td>발가락 또는 손가락 다수 절단 등 중등도 상해</td>
+          </tr>
+          <tr>
+            <td><strong>상해 8급</strong></td>
+            <td>300만 원</td>
+            <td>고막 파열 또는 단순 사지 골절 상태</td>
+          </tr>
+          <tr>
+            <td><strong>상해 9급</strong></td>
+            <td>240만 원</td>
+            <td>치아 5개 이상 파손 및 경미한 인대 손상 상태</td>
+          </tr>
+          <tr>
+            <td><strong>상해 10급</strong></td>
+            <td>160만 원</td>
+            <td>가벼운 안면부 손상 및 단순 선상 골절</td>
+          </tr>
+          <tr>
+            <td><strong>상해 11급</strong></td>
+            <td>120만 원</td>
+            <td>뇌진탕 판정을 받거나 치아 2개~4개 이하 파손</td>
+          </tr>
+          <tr>
+            <td><strong>상해 12급</strong></td>
+            <td>120만 원</td>
+            <td>목, 허리의 외상성 경추/요추 염좌 (가장 빈번한 일반 사고)</td>
+          </tr>
+          <tr>
+            <td><strong>상해 13급</strong></td>
+            <td>80만 원</td>
+            <td>안구의 단순 전방 출혈 및 손가락 관절 염좌</td>
+          </tr>
+          <tr>
+            <td><strong>상해 14급</strong></td>
+            <td>50만 원</td>
+            <td>단순 타박상, 피부 표재성 창상 및 가벼운 찰과상</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning-box">
+        <p><strong>중요 주의사항 (염좌 사고 사례):</strong></p>
+        <p>신호 대기 중 가벼운 접촉 사고로 흔히 뒷목을 잡고 내리게 되는 염좌 부상은 상해등급 12급에 해당되어 한도액이 단 120만 원에 불과합니다. 이 120만 원이라는 금액 속에는 상대방의 병원 치료비뿐만 아니라 합의금(위자료, 휴업손해 등)까지 모두 합산되어 책정됩니다. 피해자의 치료비로 110만 원이 지출되었다면 실제 지급 가능한 합의금 한도는 단 10만 원밖에 남지 않는 구조입니다. 만약 치료비가 120만 원을 초과하면 상대 보험사로부터 병원비 보증이 거부되므로 피해자는 자신의 자동차보험 내 무보험차상해 특약으로 처리하거나 가해자에게 개인 민사 소송을 청구해야 합니다.</p>
+      </div>
+    </section>
+
+    <section id="property-limits">
+      <h2>3. 대물배상 의무 가입 최소 한도와 초과 리스크</h2>
+      <p>대물배상은 자동차 사고로 다른 사람의 재물이나 차량, 도로 시설물 등을 파손하거나 훼손하였을 때 책임을 지는 필수 보험입니다. 법에서 정한 최소한의 가입 한도액 기준은 사고 1건당 <strong>2,000만 원</strong>입니다. 법적인 제재를 피하기 위해서만 의무적으로 가입하는 싼곳을 찾다 보면, 많은 사회 초년생들이 대물배상을 최소 금액인 2,000만 원으로 설정해 신규 가입하는 우를 범하곤 합니다.</p>
+      
+      <p>하지만 현대 도로 위를 주행하는 국산 고가 브랜드 세단, 수입 외제차, 혹은 대형 전기차 등의 차량 가액을 고려하면 2,000만 원이라는 한도는 턱없이 부족합니다. 예를 들어 상대방의 외제차량 뒤 범퍼를 경미하게 추돌하는 사고만으로도 렌트 비용과 정식 센터 수리비 합산액이 수천만 원을 돌파하는 사례가 빈번하게 발생하고 있습니다. 게다가 중앙분리대를 추돌하여 고가의 가로수, 교통신호 제어기, 전신주 등을 파손할 시 청구되는 시설 보수 비용 역시 가입자의 목을 죄어옵니다.</p>
+
+      <div class="info-box">
+        <p><strong>전문가들이 전하는 스마트 설계 팁:</strong></p>
+        <p>인터넷이나 스마트폰 온라인 다이렉트 사이트, 토스나 카카오톡 제휴 경로를 통해 개인이 예상 가입 견적 가격을 직접 비교해 보시면 놀라운 사실을 알 수 있습니다. 대물배상 한도를 법정 최소 규정인 2,000만 원에서 대다수의 운전자들이 가입하는 5억 원 혹은 10억 원 수준으로 무려 50배 상향하더라도, 실제 납입하는 연간 보험 가격 비용 차이는 연평균 단 몇만 원 수준에 불과합니다. 아주 미미한 부담금 증가로 수억 원 대의 대형 다중 추돌 사고나 초고가 수입차와의 사고를 대비할 수 있으므로, 대물 한도액 상향은 무조건 실행하는 것을 강력하게 추천드립니다.</p>
+      </div>
+    </section>
+
+    <section id="uninsured-penalty">
+      <h2>4. 책임보험 미가입 시 일별 과태료 및 형사처벌 규정</h2>
+      <p>자동차 의무보험(책임보험)은 단 하루의 공백도 허용하지 않습니다. 바쁜 일정이나 단순 착오로 갱신 기한을 놓쳐 단 1일이라도 책임보험 미가입 상태가 발생하는 순간, 지자체로부터 즉시 행정 처분 과태료 고지서가 발송됩니다. 가입 누락 상태의 차량 종류와 미가입 기간에 따라 일별로 부과되는 과태료 액수는 아래와 같습니다.</p>
+
+      <h3>자가용 및 사업용 차량의 미가입 기간별 과태료 부과 기준표</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>미가입 기간</th>
+            <th>대인배상 I 과태료</th>
+            <th>대물배상 과태료</th>
+            <th>합산 최고 한도액</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="2"><strong>비사업용 자가용</strong></td>
+            <td>10일 이내</td>
+            <td>10,000원</td>
+            <td>5,000원</td>
+            <td rowspan="2"><strong>총 90만 원</strong> (대인 60만 / 대물 30만)</td>
+          </tr>
+          <tr>
+            <td>11일째부터 매 1일 추가 시</td>
+            <td>매일 4,000원 가산</td>
+            <td>매일 2,000원 가산</td>
+          </tr>
+          <tr>
+            <td rowspan="2"><strong>영업용 사업용</strong></td>
+            <td>10일 이내</td>
+            <td>대인I: 30,000원 / 대인II: 30,000원</td>
+            <td>5,000원</td>
+            <td rowspan="2"><strong>총 230만 원</strong> (대인I 100만 / 대인II 100만 / 대물 30만)</td>
+          </tr>
+          <tr>
+            <td>11일째부터 매 1일 추가 시</td>
+            <td>매일 8,000원(대인 I, II 각각) 가산</td>
+            <td>매일 2,000원 가산</td>
+          </tr>
+          <tr>
+            <td rowspan="2"><strong>이륜자동차 (오토바이)</strong></td>
+            <td>10일 이내</td>
+            <td>6,000원</td>
+            <td>3,000원</td>
+            <td rowspan="2"><strong>총 30만 원</strong> (대인 20만 / 대물 10만)</td>
+          </tr>
+          <tr>
+            <td>11일째부터 매 1일 추가 시</td>
+            <td>매일 1,200원 가산</td>
+            <td>매일 600원 가산</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning-box">
+        <p><strong>단순 행정처분을 넘어선 강력한 형사 처벌 리스크:</strong></p>
+        <p>단순히 차고지에 방치해 둔 상태라면 과태료 부과로 마무리되지만, 만약 <strong>의무 책임보험이 미가입된 상태로 도로 위를 1미터라도 주행하다 적발되거나 주행 중 단순 추돌 사고를 내는 경우</strong>에는 사태가 극도로 심각해집니다. 이는 단순 행정 질서벌이 아닌 <strong>형사 처벌 대상</strong>이 되어 1년 이하의 징역형 또는 1,000만 원 이하의 벌금형에 처하게 되며, 교통사고 전과 기록이 남게 됩니다. 또한 적발 즉시 차량 등록번호판이 영치되거나 강제 폐차, 직권 말소 조치까지 이어질 수 있습니다.</p>
+      </div>
+    </section>
+
+    <section id="comparison-strategy">
+      <h2>5. 다이렉트 가입 및 온라인 비교 할인 혜택 활용 전략</h2>
+      <p>보험료 가격과 견적은 개인의 주민등록 나이, 운전 이력 및 무사고 경력, 그리고 가입하고자 하는 차량의 가액과 브랜드 모델 등에 따라 다르게 결정됩니다. 20대 초반 대학생이나 사회초년생의 신규 첫 차 가입의 경우 기본 요율 할증률이 최고조에 달하여 평균 연간 가격이 150만 원에서 250만 원을 초과하기도 하지만, 30대, 40대, 50대 이상의 숙련된 기혼 운전자의 경우 연평균 비용 부담금이 60만 원에서 90만 원 이하로 안정화되는 흐름을 보입니다.</p>
+      
+      <p>조금이라도 가입 비용을 아끼고 절약 혜택을 극대화하기 위해서는 다음과 같은 현대적 플랫폼과 온라인 특약 시스템을 적극적으로 탐색해야 합니다.</p>
+      
+      <ul>
+        <li><strong>주행거리 마일리지 할인 특약</strong>: 차량 운행이 적은 가입자를 대상으로 주행거리에 따라 만기 시 최고 35%에서 45% 수준의 비용 환급을 제공하는 필수 선택 항목입니다.</li>
+        <li><strong>안전운전 앱 점수 할인</strong>: 토스, 네이버 지도, 카카오내비, 티맵(T-map) 등의 네비게이션 앱과 연동하여 안전운전 점수 80점 이상을 획득하면 연간 가격의 약 11%에서 16%까지 직관적으로 추가 할인을 적용받을 수 있습니다.</li>
+        <li><strong>온라인 직접 가입 할인율 적용</strong>: 대리점 설계사 채널을 통한 중간 수수료 유통 구조를 배제하고 스마트폰 인터넷 모바일 웹이나 다이렉트 전용 어플을 통해 비대면으로 가입할 경우 기본적으로 평균 15% 이상 금액이 저렴해집니다.</li>
+        <li><strong>모바일 가입 이벤트 참여</strong>: 정기적으로 제휴 카드사의 결제 캐시백 혜택, 모바일 백화점 상품권 증정 프로모션, 신규 가입 전용 사은품 및 현금지원 혜택을 확인하여 실질적인 체감 가입 단가를 극적으로 낮출 수 있습니다.</li>
+      </ul>
+
+      <p>과거에는 일일이 각 브랜드 공식 홈페이지에 접속하여 본인 인증 후 조회를 해야 했지만, 최근에는 챗지피티(ChatGPT)나 제미나이(Gemini), 클로드 등의 우수한 지능형 생성 AI 비서 혹은 인공지능 기반 분석 알고리즘이 적용된 전문 포털 비교 서비스를 통해 개인 맞춤형 가이드라인과 순위를 손쉽게 컨설팅받을 수 있는 시대가 도래하였습니다.</p>
+    </section>
+
+    <section id="simulation-section">
+      <h2>6. 자동차 책임보험 및 종합보험 예상 견적 시뮬레이터</h2>
+      <p>본인의 나이대와 운전 경력, 소유한 차량 종류 및 담보 범위를 선택하여 연간 예상 발생 보험 비용의 추이를 시뮬레이션해 보십시오. 입력 양식을 꼼꼼하게 완성하시면 합리적인 수준의 평균 예상 금액이 즉시 산출됩니다.</p>
+      
+      <form id="calc-simulator" onsubmit="event.preventDefault(); calculatePremium();">
+        <div class="form-group-row">
+          <div class="form-field">
+            <label for="calc_age">운전자 나이대 (가입 기준)</label>
+            <select id="calc_age" required>
+              <option value="">나이대를 선택하세요</option>
+              <option value="20s_young">만 21세 이하 (할증 최고 단계)</option>
+              <option value="20s_mid">만 24세 이하 (과도기 할인 단계)</option>
+              <option value="26s">만 26세 이상 (안정 구간 초입)</option>
+              <option value="30s">30대 연령대 (최저 요율 적용)</option>
+              <option value="40s">40대 연령대 (최저 요율 적용)</option>
+              <option value="50s">50대 이상 연령대</option>
+            </select>
+          </div>
+          
+          <div class="form-field">
+            <label for="calc_exp">운전 경력 기간</label>
+            <select id="calc_exp" required>
+              <option value="">경력 기간을 선택하세요</option>
+              <option value="less1">최초 신규 가입 (1년 미만)</option>
+              <option value="1to3">1년 이상 ~ 3년 미만</option>
+              <option value="3to5">3년 이상 ~ 5년 미만</option>
+              <option value="more5">5년 이상 경력자 (할인 우대)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group-row">
+          <div class="form-field">
+            <label for="calc_car">차량 종류 및 배기량</label>
+            <select id="calc_car" required>
+              <option value="">차종을 선택하세요</option>
+              <option value="compact">경차 (1,000cc 미만 레이, 캐스퍼 등)</option>
+              <option value="mid_sedan">준중형/중형 세단 (아반떼, 쏘나타 등)</option>
+              <option value="luxury_sedan">수입 세단 및 고가 국산 세단 (그랜저, 제네시스 등)</option>
+              <option value="suv">레저용 SUV 및 미니밴</option>
+              <option value="electric">고전압 전기자동차 (테슬라, 아이오닉 등)</option>
+            </select>
+          </div>
+          
+          <div class="form-field">
+            <label for="calc_accident">과거 3년간 사고 이력</label>
+            <select id="calc_accident" required>
+              <option value="">사고 이력을 선택하세요</option>
+              <option value="none">무사고 경력 3년 이상 (할인 대상)</option>
+              <option value="one">경미한 단순 대물 사고 1회</option>
+              <option value="many">대인 사고 있음 또는 다수 누적 (할증 대상)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="calc_type">담보 설계 유형 범위</label>
+          <select id="calc_type" required>
+            <option value="">설계 유형을 선택하세요</option>
+            <option value="liability">법적 최소 책임보험만 가입 (대인1 + 대물 2천만 원)</option>
+            <option value="comprehensive">든든한 종합보험 가입 (대인2 무한 + 대물 5억~10억 + 자상/자차)</option>
+          </select>
+        </div>
+
+        <div class="form-group-row">
+          <div class="form-field">
+            <label for="user_name">신청자 성함</label>
+            <input type="text" id="user_name" placeholder="홍길동" required>
+          </div>
+          <div class="form-field">
+            <label for="user_phone">연락처 (모바일)</label>
+            <input type="tel" id="user_phone" placeholder="010-1234-5678" pattern="[0-9]{3}-[0-9]{3,4}-[0-9]{4}" required>
+          </div>
+        </div>
+
+        <label for="user_memo">상담 시 요청사항 또는 특약 문의 (선택)</label>
+        <textarea id="user_memo" rows="3" placeholder="예: 무사고 경력인정제도 군 운전병 복무 경력 반영 방법이나 자녀 할인 조건이 궁금합니다."></textarea>
+
+        <button type="submit" class="cta-btn">맞춤 예상 비용 즉시 계산하기</button>
+      </form>
+
+      <div id="calc_result" class="result-box">
+        <!-- 결과 텍스트가 자바스크립트로 출력됩니다 -->
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>7. 자주 묻는 질문 (FAQ)</h2>
+      
+      <div class="faq-item">
+        <h3>Q1. 의무적으로 가입하는 책임보험만 가입해도 일상 주행에 문제가 없나요?</h3>
+        <p>A. 법령상 단속이나 무보험 과태료 처분을 피할 수는 있지만, 실제 교통사고가 발생하면 한도가 매우 부족하여 심각한 금전적 파산 리스크에 노출됩니다. 또한, 대인배상 II 무한 보장이 포함되지 않은 책임보험 단독 가입 상태라면 중과실이나 인명 피해 사고 시 '교통사고처리 특례법'의 혜택을 받지 못하여 공소제기 및 형사 처벌 대상이 되므로 반드시 종합보험으로 가입할 것을 권장합니다.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Q2. 대인배상 I 12급 상해를 받았는데 병원비가 120만 원을 초과하면 어떻게 처리되나요?</h3>
+        <p>A. 12급의 보상 한도액은 정확히 120만 원입니다. 이를 초과하는 추가 병원비와 치료 금액은 상대 차주가 종합보험에 가입되어 있지 않은 경우, 본인 혹은 가족이 가입한 자동차보험의 '무무보험차상해' 담보를 통해 먼저 보상받은 후 보험사가 가해자에게 구상권을 청구하는 방식으로 진행하거나, 가해자 개인과 민사 소송을 통해 초과 비용을 청구해 받아내야 합니다.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Q3. 단 하루 차량을 대여하거나 지인 차량을 빌려 운전할 때 가입하는 임시 상품은 한도가 어떻게 되나요?</h3>
+        <p>A. 모바일 금융 플랫폼이나 보험사 전용 앱을 통해 하루 단위로 가입하는 원데이 자동차 보험 역시 의무 조건인 대인 I 및 대물 최소 금액을 필수 기본으로 탑재하고 있습니다. 상품 종류에 따라 대물배상 한도를 3,000만 원에서 최고 1억 원 이상으로 확장 설계할 수 있으므로, 타인 차량을 임시로 운행할 때도 대물 한도 및 타인차량 복구비용 옵션을 꼭 검증한 후 가입하는 것이 유리합니다.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Q4. 인터넷 다이렉트와 오프라인 대리점 간 가입 가격 격차가 발생하는 원인은 무엇인가요?</h3>
+        <p>A. 설계사나 중개 업체의 영업 수수료, 오프라인 지점 유지 비용, 마케팅 유통 마진 등이 빠지기 때문입니다. 동일한 대기업 보험사 브랜드의 완전히 동일한 보장 한도 조건(대물 5억, 대인 무한 등)이라 할지라도, 온라인 Direct 웹 브라우저나 전용 계산기 앱을 이용하면 통상적으로 약 15~20% 수준으로 요금이 크게 낮아집니다.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Q5. 주말이나 명절 연휴 기간에 책임보험 만기가 겹쳤는데 가입을 며칠 미뤄도 괜찮나요?</h3>
+        <p>A. 절대 안 됩니다. 공공기관이나 보험사가 쉬는 주말이라 하더라도 인터넷 및 모바일 온라인 다이렉트 가입 시스템은 연중무휴 24시간 작동하므로 반드시 사전에 미리 갱신 신청을 해두어야 합니다. 단 하루라도 가입하지 않은 공백 기간이 발생한다면 주말 및 공휴일을 포함하여 즉시 미가입 일수별 과태료가 산출되어 부과됩니다.</p>
+      </div>
+    </section>
+
+    <section id="official-resources" class="external-links">
+      <h2>8. 공인된 신뢰성 높은 공식 외부 정보 자원</h2>
+      <p>자동차 책임보험 제도와 관련된 법률 조항, 공식 통계 및 금융 당국의 약관 분석은 아래의 공신력 있는 공식 채널을 통해 자세하게 검토해 보실 수 있습니다.</p>
+      <ul>
+        <li>
+          <a href="https://directcarpromotv.cafe24.com/" target="_blank" rel="noopener noreferrer">연령별 및 가입 조건별 자동차보험 종합 진단 가이드 공식 포털</a>
+        </li>
+        <li>
+          <a href="https://namu.wiki/w/%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98" target="_blank" rel="noopener noreferrer">나무위키 백과사전 - 대한민국 자동차보험 개념 및 법적 담보 체계 해설</a>
+        </li>
+        <li>
+          <a href="https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=250868" target="_blank" rel="noopener noreferrer">국가법령정보센터 - 자동차손해배상 보장법 (자배법) 법률 및 시행령 조문</a>
+        </li>
+        <li>
+          <a href="https://fine.fss.or.kr" target="_blank" rel="noopener noreferrer">금융감독원 파인 금융소비자포털 - 제도적 표준약관 공시 및 권익 구제 정보</a>
+        </li>
+        <li>
+          <a href="https://www.kidi.or.kr" target="_blank" rel="noopener noreferrer">보험개발원 공식 홈페이지 - 연간 자동차 통계 분석 및 차량 등급별 자료</a>
+        </li>
+        <li>
+          <a href="https://www.koroad.or.kr" target="_blank" rel="noopener noreferrer">도로교통공단 안전 가이드 - 교통사고 처리 절차 및 과실 비율 분쟁 기준 안내</a>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <script>
+    function calculatePremium() {
+      const age = document.getElementById('calc_age').value;
+      const experience = document.getElementById('calc_exp').value;
+      const carType = document.getElementById('calc_car').value;
+      const liabilityType = document.getElementById('calc_type').value;
+      const accident = document.getElementById('calc_accident').value;
+
+      if (!age || !experience || !carType || !liabilityType || !accident) {
+        alert("모든 입력 항목을 빠짐없이 선택해 주시기 바랍니다.");
+        return;
+      }
+
+      // 가상 산출 로직
+      let basePrice = 600000;
+
+      // 나이 요율 변동
+      if (age === '20s_young') basePrice *= 2.3;
+      else if (age === '20s_mid') basePrice *= 1.7;
+      else if (age === '26s') basePrice *= 1.2;
+      else if (age === '30s') basePrice *= 0.85;
+      else if (age === '40s') basePrice *= 0.8;
+      else if (age === '50s') basePrice *= 0.85;
+
+      // 경력 요율 변동
+      if (experience === 'less1') basePrice *= 1.8;
+      else if (experience === '1to3') basePrice *= 1.3;
+      else if (experience === '3to5') basePrice *= 1.0;
+      else if (experience === 'more5') basePrice *= 0.75;
+
+      // 차종 요율 변동
+      if (carType === 'compact') basePrice *= 0.8;
+      else if (carType === 'mid_sedan') basePrice *= 1.0;
+      else if (carType === 'luxury_sedan') basePrice *= 1.35;
+      else if (carType === 'suv') basePrice *= 1.05;
+      else if (carType === 'electric') basePrice *= 1.15;
+
+      // 사고 이력 변동
+      if (accident === 'none') basePrice *= 0.85;
+      else if (accident === 'one') basePrice *= 1.25;
+      else if (accident === 'many') basePrice *= 1.85;
+
+      // 의무책임 vs 종합 설계 변동
+      if (liabilityType === 'liability') {
+        basePrice *= 0.45; // 책임보험 단독 시 금액 자체는 감소
+      } else {
+        basePrice *= 1.0; // 종합보험 적용
+      }
+
+      const formattedResult = Math.round(basePrice).toLocaleString('ko-KR');
+      const resultBox = document.getElementById('calc_result');
+      
+      let messageHtml = "<h3>선택 조건별 가상 모의 산출 분석 결과</h3>";
+      messageHtml += "<p>연간 예상 되는 대략적인 납입 비용 수준은 약 <strong>" + formattedResult + "원</strong> 입니다.</p>";
+      
+      if (liabilityType === 'liability') {
+        messageHtml += "<p><strong>경고:</strong> 현재 산출된 가격은 대인배상 I(부상 최고 3,000만 원 한도) 및 대물배상 최소 2,000만 원 법정 의무 한도액만 반영한 최저 조건 예상액입니다. 사고 발생 시 수리금액과 치료비 초과분이 발생할 확률이 대단히 높고 형사합의 구제 혜택도 불가능하므로, 실제 온라인 다이렉트 가입 진행 시에는 대인 II 무제한 및 대물 5억 원 이상 종합보험 종류로 전환하여 상담 및 비교 설계를 받아보시는 것을 강력하게 추천합니다.</p>";
+      } else {
+        messageHtml += "<p><strong>진단:</strong> 대인배상 II 무한 및 대물배상 5억~10억 수준, 자차 및 자손 담보까지 모두 든든하게 포함한 안정적인 종합보험 예상 견적 결과입니다. 모바일 앱이나 어플 전용 안전운전 점수 특약 할인 및 주행거리 환급 특약을 연동할 경우, 위 산출 단가 대비 최대 30%에서 45%까지 추가적인 비용 환급 혜택을 챙기실 수 있습니다.</p>";
+      }
+      
+      resultBox.innerHTML = messageHtml;
+      resultBox.style.display = 'block';
+      resultBox.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+  
